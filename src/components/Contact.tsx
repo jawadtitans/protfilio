@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Github, Linkedin, Send, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Send, MessageCircle, FileDown } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 interface ContactProps {
@@ -60,43 +60,40 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
 
   const contactInfo = [
     {
-      icon: <Mail className="w-6 h-6" />,
-      label: "Email",
+      icon: <Mail size={20} />,
+      title: "Email",
       value: "engjawadrahimi@gmail.com",
-      href: "mailto:engjawadrahimi@gmail.com"
+      link: "mailto:engjawadrahimi@gmail.com"
     },
     {
-      icon: <Phone className="w-6 h-6" />,
-      label: "Phone",
-      value: "+93 123 456 789",
-      href: "tel:+93123456789"
+      icon: <Phone size={20} />,
+      title: "Phone",
+      value: "+93767180833",
+      link: "tel:+93767180833"
     },
     {
-      icon: <MapPin className="w-6 h-6" />,
-      label: "Location",
+      icon: <MapPin size={20} />,
+      title: "Location",
       value: "Kabul, Afghanistan",
-      href: "#"
+      link: "https://maps.google.com/?q=Kabul,Afghanistan"
     }
   ];
 
   const socialLinks = [
     {
-      icon: <Github className="w-6 h-6" />,
-      label: "GitHub",
-      href: "https://github.com/jawadrahimi",
-      color: "hover:text-gray-600"
+      icon: <Github size={20} />,
+      title: "GitHub",
+      link: "https://github.com/jawadtitans"
     },
     {
-      icon: <Linkedin className="w-6 h-6" />,
-      label: "LinkedIn",
-      href: "https://linkedin.com/in/jawadrahimi",
-      color: "hover:text-blue-600"
+      icon: <Linkedin size={20} />,
+      title: "LinkedIn",
+      link: "https://www.linkedin.com/in/jawad-rahimi-751695306"
     },
     {
-      icon: <MessageCircle className="w-6 h-6" />,
-      label: "Telegram",
-      href: "https://t.me/jawadrahimi",
-      color: "hover:text-blue-500"
+      icon: <MessageCircle size={20} />,
+      title: "WhatsApp",
+      link: "https://wa.me/0767180833"
     }
   ];
 
@@ -286,39 +283,41 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
             </div>
 
             {/* Contact Info */}
-            <div className="space-y-6">
+            <div className="flex flex-col space-y-4">
               {contactInfo.map((info, index) => (
-                <motion.a
+                <a
                   key={index}
-                  href={info.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ x: 5 }}
-                  className={`flex items-center p-4 rounded-xl transition-all duration-300 ${
-                    darkMode 
-                      ? 'bg-gray-800 hover:bg-gray-700' 
-                      : 'bg-white hover:bg-gray-50 shadow-md hover:shadow-lg'
+                  href={info.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex items-center space-x-3 p-3 rounded-lg transition-colors duration-200 ${
+                    darkMode
+                      ? 'bg-gray-800 hover:bg-gray-700 text-gray-300'
+                      : 'bg-gray-50 hover:bg-gray-100 text-gray-600'
                   }`}
                 >
-                  <div className="text-blue-600 mr-4">
-                    {info.icon}
-                  </div>
+                  <div className="text-blue-600">{info.icon}</div>
                   <div>
-                    <div className={`text-sm font-medium ${
-                      darkMode ? 'text-gray-400' : 'text-gray-500'
-                    }`}>
-                      {info.label}
-                    </div>
-                    <div className={`text-lg font-semibold ${
-                      darkMode ? 'text-white' : 'text-gray-900'
-                    }`}>
-                      {info.value}
-                    </div>
+                    <p className="text-sm font-medium">{info.title}</p>
+                    <p className="text-sm">{info.value}</p>
                   </div>
-                </motion.a>
+                </a>
               ))}
+              <a
+                href="/resume.pdf"
+                download
+                className={`flex items-center space-x-3 p-3 rounded-lg transition-colors duration-200 ${
+                  darkMode
+                    ? 'bg-gray-800 hover:bg-gray-700 text-gray-300'
+                    : 'bg-gray-50 hover:bg-gray-100 text-gray-600'
+                }`}
+              >
+                <div className="text-blue-600"><FileDown size={20} /></div>
+                <div>
+                  <p className="text-sm font-medium">Resume</p>
+                  <p className="text-sm">Download my resume</p>
+                </div>
+              </a>
             </div>
 
             {/* Social Links */}
@@ -332,7 +331,7 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
                 {socialLinks.map((social, index) => (
                   <motion.a
                     key={index}
-                    href={social.href}
+                    href={social.link}
                     target="_blank"
                     rel="noopener noreferrer"
                     initial={{ opacity: 0, scale: 0 }}
@@ -344,7 +343,7 @@ const Contact: React.FC<ContactProps> = ({ darkMode }) => {
                       darkMode
                         ? 'bg-gray-800 text-gray-300 hover:bg-gray-700'
                         : 'bg-white text-gray-600 hover:bg-gray-50 shadow-md hover:shadow-lg'
-                    } ${social.color}`}
+                    }`}
                   >
                     {social.icon}
                   </motion.a>
