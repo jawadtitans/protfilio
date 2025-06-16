@@ -53,9 +53,14 @@ const Header: React.FC<HeaderProps> = ({ darkMode, toggleDarkMode }) => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
+            className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent flex items-center gap-3"
           >
-            Jawad Rahimi
+            <img 
+              src="/jawad.jpg" 
+              alt="Jawad Rahimi" 
+              className="w-[30px] h-[30px] rounded-full object-cover"
+            />
+            <span>Jawad Rahimi</span>
           </motion.div>
 
           {/* Desktop Navigation */}

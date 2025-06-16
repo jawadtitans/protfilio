@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Download, Github, Linkedin } from 'lucide-react';
+import { ArrowDown, Download, Github, Linkedin, Code, Monitor, Smartphone, FileCode } from 'lucide-react';
 
 interface HeroProps {
   darkMode: boolean;
@@ -29,7 +29,7 @@ const Hero: React.FC<HeroProps> = ({ darkMode }) => {
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-purple-400/20 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20">
         <div className="text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -37,11 +37,43 @@ const Hero: React.FC<HeroProps> = ({ darkMode }) => {
             transition={{ duration: 0.8 }}
             className="mb-8"
           >
-            <div className="w-32 h-32 mx-auto mb-6 relative">
-              <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-2xl">
-                JR
+            <div className="w-48 h-48 mx-auto mb-6 relative">
+              <div className="w-full h-full rounded-full overflow-hidden">
+                <img 
+                  src="/jawad.jpg" 
+                  alt="Jawad Rahimi" 
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full animate-pulse opacity-30"></div>
+              
+              {/* Orbiting Icons */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0"
+              >
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <div className={`p-2 rounded-full ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+                    <Code className="w-6 h-6 text-blue-600" />
+                  </div>
+                </div>
+                <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2">
+                  <div className={`p-2 rounded-full ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+                    <Monitor className="w-6 h-6 text-purple-600" />
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
+                  <div className={`p-2 rounded-full ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+                    <Smartphone className="w-6 h-6 text-blue-600" />
+                  </div>
+                </div>
+                <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2">
+                  <div className={`p-2 rounded-full ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+                    <FileCode className="w-6 h-6 text-purple-600" />
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
 
